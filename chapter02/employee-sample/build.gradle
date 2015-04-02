@@ -1,0 +1,17 @@
+apply plugin: 'java'
+
+def defaultEncoding = 'UTF-8'
+compileJava.options.encoding = defaultEncoding
+
+sourceCompatibility = targetCompatibility = 1.8
+
+repositories {
+  jcenter()
+}
+
+dependencies {
+  compile 'org.hibernate:hibernate-entitymanager:4.3.8.Final'
+  compile 'com.h2database:h2:1.4.186'
+
+  testCompile 'junit:junit:4.12'
+}
