@@ -1,7 +1,7 @@
 # 03_sfsb
 
 ``` sh
-$ curl localhost:8080/sfsb/shopping-cart                            
+$ curl localhost:8080/sfsb/shopping-cart
 {}
 
 $ curl -X POST "localhost:8080/sfsb/shopping-cart?action=add&item=foo&quantity=3"
@@ -26,6 +26,9 @@ $ curl -X POST "localhost:8080/sfsb/shopping-cart?action=cancel"
 ```
 
 ``` sh
+$ curl localhost:8080/sfsb/shopping-cart -I
+HTTP/1.1 500 Internal Server Error
+
 [server.log]
 ERROR [org.jboss.as.ejb3.invocation] (default task-46) JBAS014134
 : EJB Invocation failed on component ShoppingCart for method public java.util.Map projpa2.ejb.ShoppingCart.getItems()
