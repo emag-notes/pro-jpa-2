@@ -1,0 +1,32 @@
+buildscript {
+  project.ext {
+    wildflyBomVersion = '8.2.1.Final'
+    dependencyManagementPluginVersion = '0.4.1.RELEASE'
+  }
+
+  repositories.jcenter()
+  dependencies.classpath "io.spring.gradle:dependency-management-plugin:$project.ext.dependencyManagementPluginVersion"
+}
+
+apply plugin: 'io.spring.dependency-management'
+apply plugin: 'war'
+
+def defaultEncoding = 'UTF-8'
+compileJava.options.encoding = defaultEncoding
+sourceCompatibility = targetCompatibility = 1.8
+
+dependencyManagement {
+  imports {
+    mavenBom "org.wildfly.bom:jboss-javaee-7.0-with-all:$project.ext.wildflyBomVersion"
+  }
+}
+
+repositories {
+  jcenter()
+}
+
+dependencies {
+  providedCompile 'org.jboss.spec.javax.servlet:jboss-servlet-api_3.1_spec'
+  providedCompile 'org.jboss.spec.javax.ejb:jboss-ejb-api_3.2_spec'
+  providedCompile 'org.hibernate.javax.persistence:hibernate-jpa-2.1-api'
+}
